@@ -42,7 +42,7 @@ pipeline{
             steps {
                 bat '''
                   echo \'=====================Docker Image Build Started====================\'
-	          docker build -t %DOCKER_REPO%:%IMAGE_VERSION% --build-arg project_name=%SOLUTION_NAME%.dll .. 
+	          docker build -t %DOCKER_REPO%:%IMAGE_VERSION% --build-arg project_name=%SOLUTION_NAME%.dll . 
 	       	  echo \'=====================Docker Image Build Completed====================\'		 
 		  echo \'=====================Docker Login Started====================\'
 		  docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
