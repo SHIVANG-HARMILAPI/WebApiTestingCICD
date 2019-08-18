@@ -42,7 +42,7 @@ pipeline{
             steps {
                 powershell '''
                 echo '====================Dcoker Image Start ================'
-               docker build --tag=${IMAGE_VERSION} --build-arg project_name=${SOLUTION_NAME}.dll .
+                docker build --tag=${IMAGE_VERSION} .
                 echo '=====================Docker Image Completed============'
                 echo "----------------------------Deploying Project Started-----------------------------"
                
