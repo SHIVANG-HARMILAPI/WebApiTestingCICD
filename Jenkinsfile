@@ -8,7 +8,7 @@ pipeline{
         string(name: 'TEST_PATH',defaultValue: 'TestCasesForWebApi/TestCasesForWebApi.csproj',description: 'Test File Path')
         string(name: 'PROJECT_PATH',defaultValue: 'WebApi/WebApi.csproj',description: 'Project Path')
         string(name: 'DOCKER_USERNAME',defaultValue:'shivang10',description:'Docker Username')
-        string(name: 'DOCKER_PASSWORD',defaultValue:'',description:'Docker Password')
+        string(name: 'DOCKER_PASSWORD',defaultValue:'Shivangkht@10',description:'Docker Password')
         string(name: 'IMAGE_VERSION',defaultValue:'latest',description:'Image Version')
         string(name: 'DOCKER_REPO',defaultValue:'shivang10/webapi',description:'Docker Repository Name')
         //choice(name: 'RELEASE_ENVIRONMENT', choices: 'Build\nDeploy',description: 'Tick What You Want To Do')
@@ -42,7 +42,7 @@ pipeline{
             steps {
                 powershell '''
                 echo '====================Dcoker Image Start ================'
-               docker build -t ${DOCKER_REPO}:${IMAGE_VERSION} --build-arg project_name=${SOLUTION_NAME}.dll .
+               docker build --tag=${DOCKER_REPO}:${IMAGE_VERSION} --build-arg project_name=${SOLUTION_NAME}.dll .
                 echo '=====================Docker Image Completed============'
                 echo "----------------------------Deploying Project Started-----------------------------"
                
