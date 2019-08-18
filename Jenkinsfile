@@ -36,7 +36,7 @@ pipeline{
                     echo '=====================Publishing Project Completed============'
                 
                     echo '====================Dcoker Image Start ================'
-                    docker build -t ${DOCKER_REPO}:${IMAGE_VERSION} --build-arg project_name=${SOLUTION_NAME}.dll .
+                    docker build -t=${DOCKER_REPO}:${IMAGE_VERSION} --build-arg project_name=${SOLUTION_NAME}.dll .
                     echo '=====================Docker Image Completed============'
                 '''}
         }
@@ -46,7 +46,7 @@ pipeline{
             steps {
                 bat '''
                 echo "----------------------------Deploying Project Started-----------------------------"
-                docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+                docker login -u=${DOCKER_USERNAME} -p=${DOCKER_PASSWORD}
                 docker push ${DOCKER_REPO_NAME}:${IMAGE_VERSION}
                 echo "----------------------------Deploying Project Completed-----------------------------"
                 '''
