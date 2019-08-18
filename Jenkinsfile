@@ -36,7 +36,8 @@ pipeline{
                     echo '=====================Publishing Project Completed============'
                 
                     echo '====================Dcoker Image Start ================'
-                    docker build --tag=${DOCKER_REPO}:${IMAGE_VERSION} --build-arg project_name=${SOLUTION_NAME}.dll .
+                    docker build --tag=images .
+                    docker tag images ${DOCKER_REPO}:try
                     echo '=====================Docker Image Completed============'
                 '''}
         }
@@ -44,7 +45,7 @@ pipeline{
 
          stage('Deploy') {
             steps {
-                bat '''
+                powershell '''
                 echo "----------------------------Deploying Project Started-----------------------------"
                 docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
                 docker push ${DOCKER_REPO}:${IMAGE_VERSION}
