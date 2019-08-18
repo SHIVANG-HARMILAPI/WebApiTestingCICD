@@ -1,7 +1,7 @@
 pipeline{
     agent { label 'master' }
     parameters{
-        string(name: 'GIT_HTTPS_PATH',defaultValue: '',description: 'GIT HTTPS PATH')
+        string(name: 'GIT_HTTPS_PATH',defaultValue: 'https://github.com/SHIVANG-HARMILAPI/WebApiTestingCICD.git',description: 'GIT HTTPS PATH')
         string(name: 'SOLUTION_PATH',defaultValue: '',description: "Solution Path")
         string(name: 'SOLUTION_NAME',defaultValue: '',description: 'Solution Name')
         string(name: "TEST_PATH",defaultValue: "TestCasesForWebApi/TestCasesForWebApi.csproj",description: "Test File Path")
