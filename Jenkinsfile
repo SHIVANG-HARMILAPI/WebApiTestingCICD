@@ -1,4 +1,5 @@
 pipeline{
+    environment {RELEASE_ENVIRONMENT = "${params.RELEASE_ENVIRONMENT}"}
     agent { label 'master' }
     parameters{
         string(name: 'GIT_HTTPS_PATH',defaultValue: 'https://github.com/SHIVANG-HARMILAPI/WebApiTestingCICD.git',description: 'GIT HTTPS PATH')
@@ -10,7 +11,7 @@ pipeline{
         string(name: 'DOCKER_PASSWORD',defaultValue:'',description:'Docker Password')
         string(name: 'IMAGE_VERSION',defaultValue:'',description:'Image Version')
         string(name: 'DOCKER_REPO',defaultValue:'',description:'Docker Repository Name')
-        choice(name: "RELEASE_ENVIRONMENT",choices: ["Build","Deploy"],description: "Tick What You Want To Do")
+        choice(name: 'RELEASE_ENVIRONMENT',choices: ["Build","Deploy"],description: "Tick What You Want To Do")
          }
 
     stages{
