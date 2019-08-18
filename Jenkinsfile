@@ -49,11 +49,11 @@ pipeline{
 
 		  echo \'=====================Docker Image Pushing to DockerHub Started====================\'
 
-		  docker tag images ${DOCKER_REPO}:try
+		  docker tag images ${DOCKER_REPO}
 
               	  docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
 
-	          docker push ${DOCKER_REPO}
+	          docker push ${DOCKER_REPO}:${IMAGE_VERSION}
 
 		  echo \'=====================Docker Image Pushing to DockerHub Completed====================\'
                 '''
