@@ -42,10 +42,10 @@ pipeline{
             steps {
                 powershell '''
                 echo '====================Dcoker Image Start ================'
-                docker build --tag=images .  
+                docker build --tag=${IMAGE_VERSION}  
                 echo '=====================Docker Image Completed============'
                 echo "----------------------------Deploying Project Started-----------------------------"
-                docker tag images ${DOCKER_REPO}:try
+                docker tag images ${DOCKER_REPO}:${IMAGE_VERSION}
                 docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
                 docker push ${DOCKER_REPO}:${IMAGE_VERSION}
                 echo "----------------------------Deploying Project Completed-----------------------------"
