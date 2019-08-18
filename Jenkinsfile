@@ -48,7 +48,7 @@ pipeline{
 		echo \'=====================Docker Login Started====================\'
 		 docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
 
-                docker push %DOCKER_REPO_NAME%:%IMAGE_VERSION%
+                docker push %DOCKER_REPO%:%IMAGE_VERSION%
 		 echo \'=====================Docker Login Completed====================\'
 		 
 		 
