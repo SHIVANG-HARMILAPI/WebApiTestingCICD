@@ -41,14 +41,21 @@ pipeline{
          stage('Deploy') {
             steps {
                 powershell '''
-                echo '====================Dcoker Image Start ================'
-                docker build --tag=${IMAGE_VERSION} .
-                echo '=====================Docker Image Completed============'
-                echo "----------------------------Deploying Project Started-----------------------------"
-               
-                docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-                docker push ${DOCKER_REPO}:${IMAGE_VERSION}
-                echo "----------------------------Deploying Project Completed-----------------------------"
+                  echo \'=====================Docker Image Build Started====================\'
+
+		  docker build --tag=images .
+
+		  echo \'=====================Docker Image Build Completed====================\'
+
+		  echo \'=====================Docker Image Pushing to DockerHub Started====================\'
+
+		  docker tag images ${DOCKER_REPO}:try
+
+              	  docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
+
+	          docker push ${DOCKER_REPO}
+
+		  echo \'=====================Docker Image Pushing to DockerHub Completed====================\'
                 '''
             }
 
