@@ -11,12 +11,12 @@ pipeline{
         string(name: 'DOCKER_PASSWORD',defaultValue:'',description:'Docker Password')
         string(name: 'IMAGE_VERSION',defaultValue:'latest',description:'Image Version')
         string(name: 'DOCKER_REPO',defaultValue:'shivang10/webapi',description:'Docker Repository Name')
-        choice(name: 'RELEASE_ENVIRONMENT', choices: 'Build\nDeploy',description: 'Tick What You Want To Do')
+        //choice(name: 'RELEASE_ENVIRONMENT', choices: 'Build\nDeploy',description: 'Tick What You Want To Do')
          }
 
     stages{
         stage('Build'){
-            when{expression{params.RELEASE_ENVIRONMENT == "Build"}}
+          //  when{expression{params.RELEASE_ENVIRONMENT == "Build"}}
             steps{
                 powershell '''
                     echo '====================Restoring Packages ================'
@@ -34,19 +34,18 @@ pipeline{
                     echo '====================Publishing Project Start ================'
                     dotnet publish ${SOLUTION_PATH} -c Release -o ../publish
                     echo '=====================Publishing Project Completed============'
-                
-                    echo '====================Dcoker Image Start ================'
-                    docker build --tag=images .
-                    docker tag images ${DOCKER_REPO}:try
-                    echo '=====================Docker Image Completed============'
-                '''}
+                                '''}
         }
     
 
          stage('Deploy') {
             steps {
                 powershell '''
+                echo '====================Dcoker Image Start ================'
+                docker build --tag=images .  
+                echo '=====================Docker Image Completed============'
                 echo "----------------------------Deploying Project Started-----------------------------"
+                docker tag images ${DOCKER_REPO}:try
                 docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
                 docker push ${DOCKER_REPO}:${IMAGE_VERSION}
                 echo "----------------------------Deploying Project Completed-----------------------------"
