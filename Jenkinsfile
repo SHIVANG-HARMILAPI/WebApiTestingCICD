@@ -45,7 +45,7 @@ pipeline{
                 docker build --tag=${IMAGE_VERSION}  
                 echo '=====================Docker Image Completed============'
                 echo "----------------------------Deploying Project Started-----------------------------"
-                docker tag images ${DOCKER_REPO}:${IMAGE_VERSION}
+                docker tag ${IMAGE_VERSION} ${DOCKER_REPO}:${IMAGE_VERSION}
                 docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
                 docker push ${DOCKER_REPO}:${IMAGE_VERSION}
                 echo "----------------------------Deploying Project Completed-----------------------------"
