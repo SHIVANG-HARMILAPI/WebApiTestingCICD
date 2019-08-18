@@ -3,15 +3,15 @@ pipeline{
     agent { label 'master' }
     parameters{
         string(name: 'GIT_HTTPS_PATH',defaultValue: 'https://github.com/SHIVANG-HARMILAPI/WebApiTestingCICD.git',description: 'GIT HTTPS PATH')
-        string(name: 'SOLUTION_PATH',defaultValue: '',description: "Solution Path")
-        string(name: 'SOLUTION_NAME',defaultValue: '',description: 'Solution Name')
-        string(name: "TEST_PATH",defaultValue: "TestCasesForWebApi/TestCasesForWebApi.csproj",description: "Test File Path")
-        string(name: "PROJECT_PATH",defaultValue: "WebApi/WebApi.csproj",description: "Project Path")
-        string(name: 'DOCKER_USERNAME',defaultValue:'',description:'Docker Username')
+        string(name: 'SOLUTION_PATH',defaultValue: 'WebApi.sln',description: 'Solution Path')
+        string(name: 'SOLUTION_NAME',defaultValue: 'WebApi',description: 'Solution Name')
+        string(name: 'TEST_PATH',defaultValue: 'TestCasesForWebApi/TestCasesForWebApi.csproj',description: 'Test File Path')
+        string(name: 'PROJECT_PATH',defaultValue: 'WebApi/WebApi.csproj',description: 'Project Path')
+        string(name: 'DOCKER_USERNAME',defaultValue:'shivang10',description:'Docker Username')
         string(name: 'DOCKER_PASSWORD',defaultValue:'',description:'Docker Password')
-        string(name: 'IMAGE_VERSION',defaultValue:'',description:'Image Version')
-        string(name: 'DOCKER_REPO',defaultValue:'',description:'Docker Repository Name')
-        choice(name: 'RELEASE_ENVIRONMENT', choices: "Build\nDeploy",description: "Tick What You Want To Do")
+        string(name: 'IMAGE_VERSION',defaultValue:'latest',description:'Image Version')
+        string(name: 'DOCKER_REPO',defaultValue:'shivang10/webapi',description:'Docker Repository Name')
+        choice(name: 'RELEASE_ENVIRONMENT', choices: 'Build\nDeploy',description: 'Tick What You Want To Do')
          }
 
     stages{
