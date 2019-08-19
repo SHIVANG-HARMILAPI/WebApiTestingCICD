@@ -58,4 +58,10 @@ pipeline{
         }
 
     }
+	post {
+	always {
+	echo “Pipeline finished”
+	bat ./performCleanUp.bat
+}
+}
 }
