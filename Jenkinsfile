@@ -52,17 +52,13 @@ pipeline{
 		  echo \'=====================Docker Deploying Completed====================\'
 
 		 
-                '''
+               '''
             }
-
         }
-
     }
-
-	post {
-	always {
-	echo “Pipeline finished”
-	bat ./performCleanUp.bat
-}
-}
+	 post{
+        always{
+            deleteDir()
+       }
+    }
 }
