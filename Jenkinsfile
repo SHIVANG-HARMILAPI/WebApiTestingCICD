@@ -20,6 +20,7 @@ pipeline{
             steps{
                 powershell '''
                     echo '====================Restoring Packages ================'
+		    dotnet C:/Sonar/SonarScanner.MSBuild.dll begin /k:"api" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="4444a4428f4e462980e75e513a0587db0be53b38"
                     dotnet restore ${SOLUTION_PATH} --source https://api.nuget.org/v3/index.json
                     echo '=====================Packages Restoration Completed============'
                   
@@ -30,7 +31,7 @@ pipeline{
                     echo '====================Testing Project Start ================'
                     dotnet test ${TEST_PATH}
                     echo '=====================Testing Project Completed============'
-                  
+                    dotnet C:/Sonar/SonarScanner.MSBuild.dll end /d:sonar.login="4444a4428f4e462980e75e513a0587db0be53b38"
                     echo '====================Publishing Project Start ================'
                     dotnet publish ${SOLUTION_PATH} -c Release -o ../publish
                     echo '=====================Publishing Project Completed============'
